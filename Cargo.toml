@@ -8,3 +8,6 @@ edition = "2021"
 [dependencies]
 axum = { version = "0.6" }
 tokio = { version = "1.26", features = ["full"] }
+tracing = { version = "0.1" }
+tracing-logfmt = { version = "0.3" }
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
