@@ -1,5 +1,5 @@
 [package]
-name = "cloud-run-hello-world"
+name = "axum-cloud-run-example"
 version = "0.1.0"
 edition = "2021"
 

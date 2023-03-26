@@ -4,5 +4,5 @@ COPY . /app
 RUN cargo build --release
 
 FROM gcr.io/distroless/cc-debian11:nonroot
-COPY --from=build --chown=nonroot:nonroot /app/target/release/cloud-run-hello-world /
-ENTRYPOINT ["/cloud-run-hello-world"]
+COPY --from=build --chown=nonroot:nonroot /app/target/release/axum-cloud-run-example /
+ENTRYPOINT ["/axum-cloud-run-example"]
