@@ -1,11 +1,8 @@
-FROM rust:1.68.1
+FROM docker.io/rust:1.68.1 as build
+WORKDIR /app
+COPY . /app
+RUN cargo build --release
 
-# Copy local code to the container image.
-WORKDIR /usr/src/app
-COPY . .
-
-# Install production dependencies and build a release artifact.
-RUN cargo install --path .
-
-# Run the web service on container startup.
-CMD ["cloud-run-hello-world"]
+FROM gcr.io/distroless/cc-debian11:nonroot
+COPY --from=build --chown=nonroot:nonroot /app/target/release/cloud-run-hello-world /
+ENTRYPOINT ["/cloud-run-hello-world"]
